@@ -1,7 +1,16 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
+<<<<<<< HEAD
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
+=======
+<<<<<<< HEAD
+import viteLogo from '/vite.svg'
+=======
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
+>>>>>>> 3c94461 (tugasp5 pertemuan 5)
+>>>>>>> dd32295f4e2e85c24e21b19e59c85b747e7753d3
 import './App.css'
 
 function App() {
@@ -9,6 +18,31 @@ function App() {
 
   return (
     <>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+=======
+>>>>>>> dd32295f4e2e85c24e21b19e59c85b747e7753d3
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -114,6 +148,10 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
+<<<<<<< HEAD
+=======
+>>>>>>> 3c94461 (tugasp5 pertemuan 5)
+>>>>>>> dd32295f4e2e85c24e21b19e59c85b747e7753d3
     </>
   )
 }
