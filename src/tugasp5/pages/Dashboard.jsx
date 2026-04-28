@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../layouts/Sidebar";
-import Header from "../layouts/Header";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
 import PageHeader from "../components/PageHeader";
 import { FaShoppingCart, FaTruck, FaBan, FaDollarSign } from "react-icons/fa";
 import {

@@ -38,7 +38,7 @@ export default function Header() {
         {/* Profile */}
         <div className="flex items-center gap-3 ml-2">
           <span className="text-sm text-gray-600">
-            Hello, <b className="text-gray-800">Muhammad Rafi</b>
+            Hello, <b className="text-gray-800">Adita Sastra</b>
           </span>
           <img
             src="/img/rafijelek.jpeg"

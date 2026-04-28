@@ -1,89 +1,53 @@
+import React, { Suspense } from "react";
 import "./assets/tailwind.css";
 import { Routes, Route } from "react-router-dom";
-import Sidebar from "./layouts/Sidebar";
-import Header from "./layouts/Header";
-import Dashboard from "./pages/Dashboard";
-import Customers from "./pages/Customers";
-import Orders from "./pages/Orders";
-import AddCustomer from "./pages/AddCustomer";
-import AddOrder from "./pages/AddOrder";
-import ErrorPage from "./pages/ErrorPage";
+
+// --- LAZY LOADING (TARUH DI LUAR FUNGSI APP) ---
+
+// Layouts
+const MainLayout = React.lazy(() => import("./layouts/MainLayout"));
+const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
+
+// Pages
+const Dashboard = React.lazy(() => import("./pages/Dashboard"));
+const Customers = React.lazy(() => import("./pages/Customers"));
+const Orders = React.lazy(() => import("./pages/Orders"));
+const AddCustomer = React.lazy(() => import("./pages/AddCustomer"));
+const AddOrder = React.lazy(() => import("./pages/AddOrder"));
+const ErrorPage = React.lazy(() => import("./pages/ErrorPage"));
+
+// Auth Pages
+const Login = React.lazy(() => import("./pages/auth/Login"));
+const Register = React.lazy(() => import("./pages/auth/Register"));
+const Forgot = React.lazy(() => import("./pages/auth/Forgot"));
 
 function App() {
   return (
-    <div className="flex bg-[#F3F4F6] min-h-screen">
-      
-      {/* Sidebar */}
-      <Sidebar />
+    <Suspense fallback={<div className="p-5 font-bold">Loading...</div>}>
+      <Routes>
+        {/* Grup Main Layout */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/customers/add" element={<AddCustomer />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/add" element={<AddOrder />} />
 
-      {/* Main */}
-      <div className="flex-1">
-        <Header />
+          {/* Error Routes */}
+          <Route path="/400" element={<ErrorPage code="400" description="Bad Request." image="/img/400.png" />} />
+          <Route path="/401" element={<ErrorPage code="401" description="Unauthorized." image="/img/401.png" />} />
+          <Route path="/403" element={<ErrorPage code="403" description="Forbidden." image="/img/403.png" />} />
+          <Route path="*" element={<ErrorPage code="404" description="Page not found." image="/img/404.png" />} />
+        </Route>
 
-        <div className="px-6 py-5">
-
-          {/* ROUTES */}
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-
-            {/* Customers */}
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/customers/add" element={<AddCustomer />} />
-
-            {/* Orders */}
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/orders/add" element={<AddOrder />} />
-
-            {/* Error Pages */}
-            <Route
-              path="/400"
-              element={
-                <ErrorPage
-                  code="400"
-                  description="Bad Request. Permintaan tidak valid."
-                  image="/img/400.png"
-                />
-              }
-            />
-
-            <Route
-              path="/401"
-              element={
-                <ErrorPage
-                  code="401"
-                  description="Unauthorized. Silakan login terlebih dahulu."
-                  image="/img/401.png"
-                />
-              }
-            />
-
-            <Route
-              path="/403"
-              element={
-                <ErrorPage
-                  code="403"
-                  description="Forbidden. Kamu tidak punya akses."
-                  image="/img/403.png"
-                />
-              }
-            />
-
-            {/* 404 fallback */}
-            <Route
-              path="*"
-              element={
-                <ErrorPage
-                  code="404"
-                  description="Page not found."
-                  image="/img/404.png"
-                />
-              }
-            />
-          </Routes>
-
-        </div>
-      </div>
-    </div>
+        {/* Grup Auth Layout */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot" element={<Forgot />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
